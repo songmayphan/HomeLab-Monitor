@@ -1,5 +1,5 @@
 {
-  "name": "HomeLab",
+  "name": "homelab",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,8 +10,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "local-ip": "^2.0.0",
     "react": "16.13.1",
-    "react-native": "0.63.4"
+    "react-native": "^0.63.4",
+    "react-native-network-info": "^5.2.1",
+    "react-native-ssh": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.12.9",
@@ -25,5 +28,9 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
