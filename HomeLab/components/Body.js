@@ -3,56 +3,56 @@ import { View, Text, StyleSheet, TouchableOpacity, Alert, Button, Linking } from
 import SSH from 'react-native-ssh';
 // import {NetworkInfo} from 'react-native-network-info';
 
-// set up states for commands
-
-
-
-
+const Body =({title}) => {
 // var command = 'sensors';
 const checkTemp = (config, command) => {
-    console.log ("Trying to connect to host.........")
+    console.log ("Checking temperature")
     SSH.execute(config, command).then(
         result => console.log(result),
-        error =>  console.log('Error:', error), console.log("end sessions............")
+        error =>  console.log('Error:', error)
       );
+    console.log("ending session...")
 }
 
 const checkStorage = (config, command) => {
-    console.log ("Trying to connect to host.........")
+    console.log ("checking storage")
     SSH.execute(config, command).then(
         result => console.log(result),
-        error =>  console.log('Error:', error), console.log("end sessions............")
+        error =>  console.log('Error:', error)
       );
+    console.log("ending session...")
 
 }
 
 const yamurl = "https://theyamcloud.com";
   
   //style--------------------------
-const Body =({title}) => {
+
     var config = {user: 'mphan', host: '192.168.1.35', password: 'Songmay1!'};
     var command = "ifconfig"
     console.log(config, command)
 
     return (
         <View>
-            {/* <OpenURLButton url={yamurl} > YamCloud Portal </OpenURLButton> */}
 
             <TouchableOpacity
                 style = {styles.btnurl}
                 onPress={ ()=>{ Linking.openURL(yamurl)}}>
                 <Text style={styles.btnTxt}> YamCloud Portal </Text>
             </TouchableOpacity>
+
             <Text style = {styles.btnsmall}> If you're at home, turn on VPN before accessing the portal</Text>
+            
             <TouchableOpacity 
                 style ={styles.btn}
-                onPress={checkStorage(config, "df -h --total")}>
+                onPress={() => checkStorage(config, "df -h --total")}>
                 <Text style={styles.btnTxt}> Check Storage </Text>
             </TouchableOpacity>
 
+
             <TouchableOpacity 
                 style ={styles.btnSto}
-                onPress={checkTemp(config, "sensors")}>
+                onPress={() => checkTemp(config, "sensors")}>
                 <Text style={styles.btnTxt}> Check Temperature</Text>
             </TouchableOpacity>
 
@@ -76,7 +76,7 @@ btnurl:{
 },
 
 btnSto:{
-    backgroundColor: 'green',
+    backgroundColor: 'red',
     padding: 10,
     margin: 20,
 },
